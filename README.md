@@ -1,0 +1,2 @@
+# sqlquery
+allquery
