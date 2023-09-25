@@ -88,6 +88,7 @@ order by [remaining fee] desc
 update student set remark ='eligible' where feespaid> any
 (select totalfees-0.6 from course)
 
+select * from student
 --5. Create a index to make retrieval faster based on course name.
 create index a_index on course(coursename)
 
@@ -102,13 +103,16 @@ having count(s.courseid)>=2
 select top 1 with ties c.coursename ,sum(s.feespaid) as 'total' from course c
 join student s on s.courseid=s.courseid
 group by c.coursename
-order by total desc
+order by [total] desc
 
 
 
 
 --8. Select name of student who are in same batch as ‘muskan’
-
+select s.sname ,c.courseid,c.coursename
+from student s
+join course c on c.courseid=s.courseid
+where s.sname='muskan'
 
 
 
@@ -121,13 +125,17 @@ select courseid from course where duration <5
 
 --10. Delete all students for whom is placed is ‘yes’ and 
 --who have paid all the fees of their course.
-delete from student where isplaced = 'yes'
+
+delete from student where isplaced = 'yes' 
+
+
+
 select *from student
 
 delete from student
 
 
 --14. Show names of students who have paid all the fees. 
-select s.sname from student s
+ select s.sname from student s
 join course c on c.courseid=s.courseid
 where (c.totalfees-s.feespaid)=0
