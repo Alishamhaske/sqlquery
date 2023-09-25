@@ -154,7 +154,7 @@ where a.acc_no=53
 
 --6 .display the customer name ,contact of customers whose account type is
 --‘saving’ order by descending order of cname .
-
+--incorrect
 select  cm.cid, cm.cname ,cm.cont 
 from cus_master cm
 join account a on a.cid=cm.cid
@@ -172,7 +172,7 @@ join account a on a.cid=c.cid
 join Btransaction bt on bt.acc_no=a.acc_no
 
 
---incorrect 4,6
+--incorrect0 4,6
 
 
 
